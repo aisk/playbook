@@ -1,0 +1,23 @@
+---
+- name: init base
+  user: root
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - shell: locale-gen zh_CN.UTF-8
+    - shell: dpkg-reconfigure --frontend noninteractive locales
+
+    - apt: update_cache=yes
+    - apt: pkg=build-essential state=latest
+    - apt: pkg=htop state=latest
+    - apt: pkg=tree state=latest
+    - apt: pkg=silversearcher-ag state=latest
+    - apt: pkg=zsh state=latest
+    - apt: pkg=git state=latest
+    - apt: pkg=axel state=latest
+    - apt: pkg=golang state=latest
+    - apt: pkg=nodejs-legacy state=latest
+    - apt: pkg=npm state=latest
+    - npm: name=bower global=yes state=latest
+    - npm: name=grunt-cli global=yes state=latest

@@ -1,0 +1,10 @@
+---
+- name: setup ghost
+  user: root
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - apt: update_cache=yes
+    - apt: pkg=nginx state=latest
+    - git: https://github.com/TryGhost/Ghost.git ~/

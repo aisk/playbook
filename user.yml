@@ -1,0 +1,21 @@
+---
+- name: init user
+  user: root
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - user: name=asaka shell=/usr/bin/zsh groups=sudo
+  - authorized_key: user=asaka
+                    key="{{ lookup('file', '/Users/asaka/.ssh/id_rsa.pub') }}"
+
+- name: init dotfiles
+  user: asaka
+  hosts: all
+  gather_facts: false
+
+  tasks:
+  - git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
+  - git: repo=https://github.com/aisk/dotfiles.git dest=~/dotfiles
+  - shell: ~/dotfiles/install.sh
+  - command: vim +BundleInstall +qall
