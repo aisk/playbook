@@ -18,4 +18,4 @@
   - git: repo=https://github.com/robbyrussell/oh-my-zsh.git dest=~/.oh-my-zsh
   - git: repo=https://github.com/aisk/dotfiles.git dest=~/dotfiles
   - shell: ~/dotfiles/install.sh
-  - command: vim +BundleInstall +qall
+  - command: vim +PlugInstall +qall
